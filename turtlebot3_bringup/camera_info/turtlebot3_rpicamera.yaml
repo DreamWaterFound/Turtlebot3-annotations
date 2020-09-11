@@ -1,19 +1,31 @@
+# 这个文件中主要保存 Turtlebot3 的相机信息，使用 ROS camera_calibration 工具得到
+
+# 图像大小
 image_width: 640
 image_height: 480
+
+# 相机名称（这个名称还真的是朴素啊）
 camera_name: camera
+# 相机内参，行优先存储
 camera_matrix:
   rows: 3
   cols: 3
   data: [322.0704122808738, 0, 199.2680620421962, 0, 320.8673986158544, 155.2533082600705, 0, 0, 1]
+
+# 相机畸变模型和畸变参数
 distortion_model: plumb_bob
 distortion_coefficients:
   rows: 1
   cols: 5
   data: [0.1639958233797625, -0.271840030972792, 0.001055841660100477, -0.00166555973740089, 0]
+
+# 矫正矩阵，非双目不用管？
 rectification_matrix:
   rows: 3
   cols: 3
   data: [1, 0, 0, 0, 1, 0, 0, 0, 1]
+
+# 总和上述过程得到的相机投影矩阵
 projection_matrix:
   rows: 3
   cols: 4

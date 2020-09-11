@@ -1,5 +1,10 @@
 <launch>
+  <!-- 该 launch 文件用于加载 Turtlebot3 机器人的描述文件 -->
+
+  <!-- 给定机器人的模型，有三种，将用于加载不同的机器人模型文件 -->
   <arg name="model"/>
+  <!-- 使用的机器人描述文件 -->
   <arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro'" />
+  <!-- 将描述文件的全部内容放在参数服务器中 -->
   <param name="robot_description" command="$(arg urdf_file)" />
 </launch>

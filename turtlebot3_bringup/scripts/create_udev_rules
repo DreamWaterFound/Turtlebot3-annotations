@@ -1,14 +1,19 @@
 #!/bin/bash
+# 这个脚本用于解决 Linux 中硬件设备操作权限的问题
 
 echo ""
 echo "This script copies a udev rule to /etc to facilitate bringing"
 echo "up the turtlebot3 usb connection."
 echo ""
 
+# 复制 rules 文件
 sudo cp `rospack find turtlebot3_bringup`/99-turtlebot3-cdc.rules /etc/udev/rules.d/
 
 echo ""
 echo "Reload rules"
 echo ""
+
+# 重新载入 rules 文件
 sudo udevadm control --reload-rules
+# 接收内核的设备事件，重放冷插拔事件信息以完成设置
 sudo udevadm trigger

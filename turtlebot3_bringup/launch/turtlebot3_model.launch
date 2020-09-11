@@ -1,16 +1,27 @@
 <launch>
+  <!-- 该 launch 文件用于在 rviz 中显示机器人的模型，并可以控制其动作 -->
+
+  <!-- 指定使用的机器人的模型名称，用于加载不同类型的机器人的描述文件 -->
   <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <!-- 在多机器人系统中指定当前机器人的名称，用于给不同的机器人生成不同的 TF 坐标变换节点前缀来区分不同的机器人。默认留空表示工作在单机器人模式（TF坐标变换树没有前缀） -->
   <arg name="multi_robot_name" default=""/>
 
+  <!-- 包含远程控制的 launch 文件，实现机器人模型的加载和对机器人状态的发布 -->
   <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">
+    <!-- 使用的机器人模型 -->
     <arg name="model" value="$(arg model)" />
+    <!-- 在多机器人系统中用于指定当前机器人的名称 -->
     <arg name="multi_robot_name" value="$(arg multi_robot_name)"/>
   </include>
 
+  <!-- joint 状态发布器 -->
   <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher">
+    <!-- 使用 GUI 界面 -->
     <param name="use_gui" value="true"/>
+    <!-- 发布速率设置为 50 fps -->
     <param name="rate" value="50"/>
   </node>
 
+  <!-- 启动 rviz， 并加载用于显示机器人模型的 rviz 显示配置文件 -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find turtlebot3_description)/rviz/model.rviz"/>
 </launch>

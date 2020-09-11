@@ -1,13 +1,24 @@
 <launch>
+  <!-- 该 launch 文件用于同时启动 Turtlebot3 机器人并同时激活激光雷达 -->
+
+  <!-- 在多机器人模式下指定当前机器人的名称，用于为每台机器人生成不同的 TF 坐标变换树节点前缀以区分不同的机器人坐标系。默认留空表示工作在单机器人模式 -->
   <arg name="multi_robot_name" default=""/>
+  <!-- 指定激光雷达数据发布的坐标系 -->
   <arg name="set_lidar_frame_id" default="base_scan"/>
 
+  <!-- 启动 Turtlebot3 机器人核心文件，建立上位机和下位机的通信 -->
   <include file="$(find turtlebot3_bringup)/launch/turtlebot3_core.launch">
+    <!-- 多机器人模式时需要指定当前机器人的名称 -->
     <arg name="multi_robot_name" value="$(arg multi_robot_name)"/>
   </include>
+
+  <!-- 启动激光雷达 -->
   <include file="$(find turtlebot3_bringup)/launch/turtlebot3_lidar.launch">
+    <!-- 指定激光雷达发布激光数据的坐标系 -->
     <arg name="set_frame_id" value="$(arg set_lidar_frame_id)"/>
   </include>
 
+  <!-- 运行诊断节点，确保 Turtlebot3 机器人正常工作 -->
   <node pkg="turtlebot3_bringup" type="turtlebot3_diagnostics" name="turtlebot3_diagnostics" output="screen"/>
+  
 </launch>

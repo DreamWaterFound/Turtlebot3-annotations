@@ -18,11 +18,22 @@
   <url type="repository">https://github.com/ROBOTIS-GIT/turtlebot3</url>
   <url type="bugtracker">https://github.com/ROBOTIS-GIT/turtlebot3/issues</url>
   <buildtool_depend>catkin</buildtool_depend>
+
+  <!-- 通过设定运行依赖项，指定元功能包中包含的子功能包 -->
+
+  <!-- 启动Turtlebot3 -->
   <exec_depend>turtlebot3_bringup</exec_depend>
+  <!-- 机器人模型相关 -->
   <exec_depend>turtlebot3_description</exec_depend>
+  <!-- example -->
   <exec_depend>turtlebot3_example</exec_depend>
+  <!-- 导航相关 -->
   <exec_depend>turtlebot3_navigation</exec_depend>
+  <!-- SLAM 相关 -->
   <exec_depend>turtlebot3_slam</exec_depend>
+  <!-- 键盘控制相关 -->
   <exec_depend>turtlebot3_teleop</exec_depend>
+
+  <!-- 固定写法，指定当前功能包为元功能包 -->
   <export><metapackage/></export>
 </package>

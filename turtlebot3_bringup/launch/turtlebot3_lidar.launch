@@ -1,8 +1,14 @@
 <launch>
+  <!-- 该 launch 文件用于启动 Turtlebot3 机器人上的激光雷达 -->
+
+  <!-- 设置激光雷达坐标系名称 -->
   <arg name="set_frame_id" default="base_scan"/>
 
+  <!-- 启动激光雷达扫描点节点 -->
   <node pkg="hls_lfcd_lds_driver" type="hlds_laser_publisher" name="turtlebot3_lds" output="screen">
+    <!-- 指定激光雷达的端口 -->
     <param name="port" value="/dev/ttyUSB0"/>
+    <!-- 指定激光雷达扫描数据所基于的坐标系id -->
     <param name="frame_id" value="$(arg set_frame_id)"/>
   </node>
 </launch>

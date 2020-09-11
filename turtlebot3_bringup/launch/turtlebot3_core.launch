@@ -1,9 +1,16 @@
 <launch>
+  <!-- 该 launch 文件用于建立上位机和下位机（OpenCR板）的通信 -->
+
+  <!-- 在多机器人模式中，用于设置当前机器人的名称；默认为空表示工作于单机器人模式。这个参数将被用于生成后面机器人 TF 坐标变换树节点中的前缀 -->
   <arg name="multi_robot_name" default=""/>
 
+  <!-- 启动关键节点 -->
   <node pkg="rosserial_python" type="serial_node.py" name="turtlebot3_core" output="screen">
+    <!-- 设置串口端口 -->
     <param name="port" value="/dev/ttyACM0"/>
+    <!-- 波特率 -->
     <param name="baud" value="115200"/>
+    <!-- TF 坐标变换树中相关节点的前缀，用于区分不同的机器人 -->
     <param name="tf_prefix" value="$(arg multi_robot_name)"/>
   </node>
 </launch>

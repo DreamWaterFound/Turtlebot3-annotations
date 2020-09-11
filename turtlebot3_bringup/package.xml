@@ -14,18 +14,29 @@
   <url type="emanual">http://turtlebot3.robotis.com</url>
   <url type="repository">https://github.com/ROBOTIS-GIT/turtlebot3</url>
   <url type="bugtracker">https://github.com/ROBOTIS-GIT/turtlebot3/issues</url>
+
   <buildtool_depend>catkin</buildtool_depend>
+
   <depend>roscpp</depend>
   <depend>std_msgs</depend>
+  <!-- 一个以键值对形式提供所谓“诊断信息”的消息类型 -->
   <depend>diagnostic_msgs</depend>
   <depend>sensor_msgs</depend>
+  <!-- 需要依赖 turtlebot3 自己的消息类型 -->
   <depend>turtlebot3_msgs</depend>
+
+  <!-- 依赖其他的 Turtlebot3 功能包 -->
   <exec_depend>turtlebot3_description</exec_depend>
   <exec_depend>turtlebot3_teleop</exec_depend>
+  <!-- 依赖的ROS控制器 -->
   <exec_depend>joint_state_publisher</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend>
+  <!-- 依赖的和 OpenCR 控制板交互的功能包 -->
   <exec_depend>rosserial_python</exec_depend>
+  <!-- 依赖的激光相关功能包 -->
   <exec_depend>hls_lfcd_lds_driver</exec_depend>
+  <!-- 对于安装有 RealSense RGB-D 的 Turtlebot3，需要依赖的对应的功能包 -->
   <!-- <exec_depend>realsense_camera</exec_depend> for TurtleBot3 Waffle using Intel RealSense Camera -->
+  <!-- 对于安装有树莓派摄像头的 Turtlebot3，需要依赖的相应功能包 -->
   <!-- <exec_depend>raspicam_node</exec_depend> for TurtleBot3 Waffle Pi using Raspberry Pi Camera -->
 </package>

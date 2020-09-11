@@ -1,13 +1,20 @@
 <launch>
+  <!-- 该 launch 文件用于远程控制机器人模型运动 -->
+  <!-- 指定机器人模型，用于加载不同的机器人模型文件 -->
   <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <!-- 在多机器人模式下用于指定机器人名称以区分不同的机器人，并通过添加前缀的方式为每个机器人生成不同的 TF 坐标系。默认留空表示工作在单机器人模式 -->
   <arg name="multi_robot_name" default=""/>
 
+  <!-- 包含描述文件加载的launch文件，通过给定机器人模型名称，该launch文件将加载对应的 URDF 描述文件到参数服务器中指定的参数中 -->
   <include file="$(find turtlebot3_bringup)/launch/includes/description.launch.xml">
     <arg name="model" value="$(arg model)" />
   </include>
 
+  <!-- 启动 robot_state_publisher 实现机器人状态的发布 -->
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <!-- 机器人状态的发布速率 -->
     <param name="publish_frequency" type="double" value="50.0" />
+    <!-- 发布的TF坐标系前缀 -->
     <param name="tf_prefix" value="$(arg multi_robot_name)"/>
   </node>
 </launch>

@@ -1,3 +1,4 @@
 <launch>
+  <!-- 该 launch 文件用于启动 Turtlebot3 机器人上的 RGB-D 相机 RealSense，相关启动文件由功能包 realsense_camera 提供 -->
   <include file="$(find realsense_camera)/launch/r200_nodelet_default.launch"/>
 </launch>
